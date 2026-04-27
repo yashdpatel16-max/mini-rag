@@ -1,161 +1,109 @@
-# 🚀 RAG System (Retrieval-Augmented Generation)
+cat > README.md << 'EOF'
+# 🚀 Mini RAG System (Retrieval-Augmented Generation)
 
-An end-to-end **Retrieval-Augmented Generation (RAG)** system that ingests multiple PDFs, stores embeddings in a vector database, retrieves relevant context, and generates intelligent responses using an LLM.
+An end-to-end **RAG system** that ingests PDFs, stores embeddings in a vector database, retrieves relevant context, and generates answers using a local LLM.
+
+---
+
+## ⚡ Quick Start (Recommended)
+
+docker compose up --build
+
+Then:
+
+1. Install Ollama → https://ollama.com  
+2. Run:
+ollama serve  
+ollama pull tinyllama  
+
+3. Open API docs:
+http://localhost:8000/docs
 
 ---
 
 ## 📌 Features
 
-- 📄 Multi-PDF ingestion
-- 🔍 Semantic search using embeddings
-- 🧠 Context-aware response generation
-- 💬 Chat history stored in MongoDB
-- 🐳 Fully containerized with Docker
-- ⚙️ CI/CD using GitHub Actions
-- ⚡ FastAPI backend with REST endpoints
-- 🤖 Local LLM inference using Ollama
+- Multi-PDF ingestion  
+- Semantic search with embeddings  
+- Context-aware responses  
+- Chat history using MongoDB  
+- Dockerized services  
+- CI/CD using GitHub Actions  
+- Local LLM using Ollama  
 
 ---
 
 ## 🏗️ Tech Stack
 
-| Layer        | Technology            |
-|-------------|----------------------|
-| Backend     | FastAPI              |
-| Vector DB   | Qdrant               |
-| Database    | MongoDB              |
-| LLM         | Ollama (local)       |
-| Frontend    | React (Vite)         |
-| DevOps      | Docker, GitHub Actions |
+- Backend: FastAPI  
+- Vector DB: Qdrant  
+- Database: MongoDB  
+- LLM: Ollama  
+- Frontend: React (Vite)  
+- DevOps: Docker, GitHub Actions  
 
 ---
 
 ## 📂 Project Structure
+
 rag-system/
-│
 ├── app/
-│ ├── ingestion/ # PDF loading & chunking
-│ ├── retrieval/ # Embeddings + Qdrant
-│ ├── llm/ # Ollama client
-│
+│   ├── ingestion/
+│   ├── retrieval/
+│   ├── llm/
 ├── docker-compose.yml
 ├── Dockerfile
 ├── main.py
 ├── requirements.txt
-├── README.md
-
-
----
-
-## ⚙️ Setup Instructions
-
-1️⃣ Clone Repository
-
-```bash
-git clone https://github.com/your-username/mini-rag.git
-cd mini-rag
-
-2️⃣ Run with Docker
-docker compose up --build
-
-3️⃣ Access API
-http://localhost:8000
-
-Swagger Docs:
-http://localhost:8000/docs
-
-🔄 API Endpoints
-📥 Ingest Documents
-POST /ingest
-Loads and processes PDFs into the vector database.
-
-💬 Query RAG System
-POST /rag-query?query=your_question&user_id=xyz
-Returns context-aware response based on stored documents.
-
-🤖 LLM Setup (Ollama)
-This project uses Ollama to run a local LLM.
-
-1️⃣ Install Ollama
-
-Download and install from:
-https://ollama.com
+└── README.md
 
 ---
 
-2️⃣ Start Ollama
-```bash
-ollama serve
+## ⚙️ Setup
 
-3️⃣ Pull a model
-
-For low-resource systems (recommended):
-ollama pull tinyllama
-
-4️⃣ Configure model in code
-
-Open:
-
-app/llm/ollama_client.py
-Update model name:
-MODEL_NAME = "tinyllama"
-
-5️⃣ Important for Docker users
-
-If running inside Docker, update URL:
-OLLAMA_URL = "http://host.docker.internal:11434/api/generate
-
-⚠️ Notes
-Ollama must be running before querying the API
-Ensure port 11434 is accessible
-Use smaller models if system has limited RAM
+git clone https://github.com/yashdpatel16-max/mini-rag.git  
+cd mini-rag  
+docker compose up --build  
 
 ---
 
+## 🤖 Ollama Setup
 
+ollama serve  
+ollama pull tinyllama  
 
+In code:
 
-🧪 CI/CD Pipeline
-✅ Automatic Docker build on every push
-✅ Container startup validation
-✅ API health check using curl
+MODEL_NAME = "tinyllama"  
 
-Implemented using GitHub Actions
+For Docker:
 
-🐳 Docker Services
-FastAPI (backend)
-Qdrant (vector DB)
-MongoDB (chat history)
+OLLAMA_URL = "http://host.docker.internal:11434/api/generate"
 
-📊 System Flow
-User Query
-   ↓
-Embedding Generation
-   ↓
-Qdrant Vector Search
-   ↓
-Context Retrieval
-   ↓
-LLM (Ollama)
-   ↓
-Final Response
+---
 
-📌 Future Improvements
-🌐 Cloud deployment (Render / AWS)
-💬 Chat UI improvements
-🔐 Authentication system
-📈 Performance optimization
+## 🔄 API
 
-👨‍💻 Author
+POST /ingest  
+POST /rag-query  
+
+---
+
+## 🧠 Flow
+
+Query → Embedding → Qdrant → Context → LLM → Response
+
+---
+
+## 👨‍💻 Author
 
 Yash Patel
 
-⭐ Notes
+---
 
-This project demonstrates:
+## ⭐ Highlights
 
-End-to-end RAG pipeline
-Vector database integration
-LLM orchestration
-Docker-based microservices
-CI/CD automation
+- End-to-end RAG pipeline  
+- Docker microservices  
+- CI/CD automation  
+EOF
