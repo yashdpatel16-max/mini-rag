@@ -1,16 +1,21 @@
 cat > README.md << 'EOF'
-# 🚀 Mini RAG System (Retrieval-Augmented Generation)
+## 🚀 Mini RAG System
 
-An end-to-end **RAG system** that ingests PDFs, stores embeddings in a vector database, retrieves relevant context, and generates answers using a local LLM.
+An end-to-end Retrieval-Augmented Generation (RAG) system that:
+
+- Ingests PDFs
+- Stores embeddings in Qdrant
+- Retrieves relevant context
+- Generates answers using a local LLM (Ollama)
 
 ---
 
-## ⚡ Quick Start (Recommended)
+## ⚡ Quick Start (1-minute setup)
 
+```bash
 docker compose up --build
 
-Then:
-
+Then start LLM:
 1. Install Ollama → https://ollama.com  
 2. Run:
 ollama serve  
