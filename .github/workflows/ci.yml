@@ -5,7 +5,7 @@ on:
     branches: ["main"]
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,3 +17,12 @@ jobs:
 
       - name: Build containers
         run: docker compose build
+
+      - name: Start containers
+        run: docker compose up -d
+
+      - name: Wait for API
+        run: sleep 10
+
+      - name: Test API
+        run: curl http://localhost:8000
